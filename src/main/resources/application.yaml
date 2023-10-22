@@ -1,0 +1,8 @@
+# YAML supports comments
+quarkus:
+  datasource:
+    db-kind: mysql
+    jdbc:
+      url: jdbc:mysql://centos.local:3306/b1
+    username: root
+    password: "123123qa"
