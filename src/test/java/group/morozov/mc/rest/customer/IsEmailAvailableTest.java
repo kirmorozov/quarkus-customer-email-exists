@@ -9,14 +9,13 @@ import org.junit.jupiter.api.Tag;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 @Tag("integration")
 @QuarkusTestResource(MySqlDatabaseTestResource.class)
 public class IsEmailAvailableTest {
     @Test
-    public void testDefaultExists() {
+    public void DefaultExists() {
         given()
                 .body("{\"customerEmail\": \"good@example.com\"}")
                 .header("Content-Type", MediaType.APPLICATION_JSON)
@@ -27,9 +26,9 @@ public class IsEmailAvailableTest {
                 .body(equalTo("true"));
     }
     @Test
-    public void testExists() {
+    public void Exists() {
         given()
-                .body("{\"customerEmail\": \"good@example.com\", \"website_id\": 1}")
+                .body("{\"customerEmail\": \"good@example.com\", \"websiteId\": 1}")
                 .header("Content-Type", MediaType.APPLICATION_JSON)
                 .when()
                 .post("/rest/default/V1/customers/isEmailAvailable")
@@ -38,9 +37,9 @@ public class IsEmailAvailableTest {
                 .body(equalTo("true"));
     }
     @Test
-    public void testNoExistsWithWebsite() {
+    public void NoExistsWithWebsite() {
         given()
-                .body("{\"customerEmail\": \"good@example.com\", \"website_id\": 2}")
+                .body("{\"customerEmail\": \"good@example.com\", \"websiteId\": 2}")
                 .header("Content-Type", MediaType.APPLICATION_JSON)
                 .when()
                 .post("/rest/default/V1/customers/isEmailAvailable")
@@ -49,7 +48,18 @@ public class IsEmailAvailableTest {
                 .body(equalTo("false"));
     }
     @Test
-    public void testNotExists() {
+    public void NoExists2WithWebsite() {
+        given()
+                .body("{\"customerEmail\": \"good@example.com\"}")
+                .header("Content-Type", MediaType.APPLICATION_JSON)
+                .when()
+                .post("/rest/base2/V1/customers/isEmailAvailable")
+                .then()
+                .statusCode(200)
+                .body(equalTo("false"));
+    }
+    @Test
+    public void NotExists() {
         given()
                 .body("{\"customerEmail\": \"123123@example.com\"}")
                 .header("Content-Type", MediaType.APPLICATION_JSON)
