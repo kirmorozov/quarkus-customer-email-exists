@@ -13,7 +13,7 @@ public class MySqlDatabaseTestResource implements QuarkusTestResourceLifecycleMa
 
     JdbcDatabaseContainer<?> dbServer;
 
-    private static final String MY_SQL_IMAGE = "mysql:latest";
+    private static final String MY_SQL_IMAGE = "mysql:8.2";
     private static final int MY_SQL_PORT = 3306;
 
     @Override
