@@ -1,4 +1,4 @@
-# code-with-quarkus
+# quarkus-customer-email-exists
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
